@@ -1,3 +1,4 @@
+import { Resolver } from 'node:dns/promises'
 import { Resend } from 'resend'
 import { HONEYPOT_FIELD, MAX_BODY_SIZE, validate, type FormValues } from '../src/lib/contact.js'
 
@@ -30,6 +31,19 @@ function clientIp(request: Request): string {
     request.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
     'unknown'
   )
+}
+
+const resolver = new Resolver({ timeout: 2000, tries: 1 })
+
+async function hasMailServer(email: string): Promise<boolean> {
+  const domain = email.slice(email.lastIndexOf('@') + 1).toLowerCase()
+  try {
+    const records = await resolver.resolveMx(domain)
+    return records.some((record) => record.exchange !== '' && record.exchange !== '.')
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code
+    return code !== 'ENOTFOUND' && code !== 'ENODATA'
+  }
 }
 
 async function isHuman(token: string, ip: string, secret: string): Promise<boolean> {
@@ -81,6 +95,13 @@ export async function POST(request: Request): Promise<Response> {
   const errors = validate(values)
   if (Object.keys(errors).length > 0) {
     return Response.json({ errors }, { status: 400 })
+  }
+
+  if (!(await hasMailServer(values.email.trim()))) {
+    return Response.json(
+      { errors: { email: "Ce domaine ne reçoit pas d'emails. Vérifiez votre adresse." } },
+      { status: 400 },
+    )
   }
 
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY
