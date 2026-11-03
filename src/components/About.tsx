@@ -1,7 +1,6 @@
-import { ArrowUpRight, Download, GraduationCap, MapPin } from 'lucide-react'
-import { FaLinkedin } from 'react-icons/fa'
-import { SiGithub } from 'react-icons/si'
+import { GraduationCap, MapPin } from 'lucide-react'
 import { education, experiences, highlight, interests, intro } from '../data/about'
+import { profile } from '../data/profile'
 import CopyEmail from './CopyEmail'
 
 function About() {
@@ -14,56 +13,17 @@ function About() {
           <div className="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
             <p className="flex items-center gap-2">
               <MapPin size={16} aria-hidden="true" />
-              Mulhouse · Mobilité Colmar / Strasbourg
+              {profile.location}
             </p>
             <CopyEmail />
           </div>
           <p className="mb-5 border-l-4 border-accent pl-4 text-xl font-bold sm:text-2xl">
             {highlight}
           </p>
-          <div className="mb-8 flex flex-col gap-4 text-base leading-relaxed sm:text-lg">
+          <div className="flex flex-col gap-4 text-base leading-relaxed sm:text-lg">
             {intro.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-          </div>
-
-          <div className="mt-auto flex flex-wrap gap-3">
-            <a
-              href="https://github.com/BryanChn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-1 items-center justify-center gap-2 rounded-full border border-white bg-white px-4 py-3 font-bold whitespace-nowrap text-black transition-transform hover:scale-105 sm:gap-3 sm:px-6"
-            >
-              <SiGithub size={22} aria-hidden="true" />
-              GitHub
-              <ArrowUpRight
-                size={20}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/bryan-chaine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-1 items-center justify-center gap-2 rounded-full border border-white/30 px-4 py-3 font-bold whitespace-nowrap transition hover:scale-105 hover:border-white sm:gap-3 sm:px-6"
-            >
-              <FaLinkedin size={22} aria-hidden="true" />
-              LinkedIn
-              <ArrowUpRight
-                size={20}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </a>
-            <a
-              href="/Chaine_Bryan_CV.pdf"
-              download
-              aria-label="Télécharger mon CV (PDF)"
-              title="Télécharger mon CV (PDF)"
-              className="group flex flex-1 items-center justify-center gap-2 rounded-full border border-white/30 px-4 py-3 font-bold whitespace-nowrap transition hover:scale-105 hover:border-white sm:gap-3 sm:px-6"
-            >
-              <Download size={20} className="transition-transform group-hover:translate-y-0.5" />
-              Mon CV
-            </a>
           </div>
         </article>
 
