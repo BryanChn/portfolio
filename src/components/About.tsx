@@ -1,52 +1,8 @@
-import {
-  ArrowUpRight,
-  Download,
-  Dumbbell,
-  GraduationCap,
-  MapPin,
-  Music,
-  Newspaper,
-} from 'lucide-react'
+import { ArrowUpRight, Download, GraduationCap, MapPin } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa'
 import { SiGithub } from 'react-icons/si'
-import { projects } from '../data/projects'
+import { education, experiences, highlight, interests, intro } from '../data/about'
 import CopyEmail from './CopyEmail'
-
-const experiences = [
-  {
-    role: 'Développeur Full Stack',
-    company: 'S2I Evolution',
-    period: 'Oct. 2024 – Août 2025',
-    description:
-      'Développement et maintenance de modules sur mesure pour PrestaShop 1.7 et 8.2. Interventions front-end et optimisations back-end pour des clients grands comptes (Celine Opticien, Hellomoon).',
-  },
-  {
-    role: 'Développeur stagiaire',
-    company: 'LUC Ratteli',
-    period: '6 mois',
-    description:
-      "Création d'une bibliothèque open-source pour automatiser le cycle de vie d'articles, de l'ajout à la revente.",
-  },
-  {
-    role: "Chef d'équipe",
-    company: 'CNPE Fessenheim',
-    period: 'Expérience antérieure',
-    description:
-      'Management d’équipe, gestion des priorités et respect des protocoles de sécurité en environnement critique.',
-  },
-]
-
-const interests = [
-  { label: 'Composition musicale', icon: Music },
-  { label: 'Veille technologique', icon: Newspaper },
-  { label: 'Musculation', icon: Dumbbell },
-]
-
-const stats = [
-  { value: '~1 an', label: 'en agence e-commerce' },
-  { value: projects.filter((p) => p.kind === 'Module').length, label: 'modules PrestaShop' },
-  { value: projects.filter((p) => p.kind === 'Projet').length, label: 'projets réalisés' },
-]
 
 function About() {
   return (
@@ -62,33 +18,14 @@ function About() {
             </p>
             <CopyEmail />
           </div>
-          <div className="flex flex-col gap-4 text-base leading-relaxed sm:text-lg">
-            <p>
-              Avant d’écrire du code, j’ai été chef d’équipe à la centrale de Fessenheim. Là-bas, la
-              rigueur et le travail d’équipe n’étaient pas des options : je les ai gardés en passant
-              au développement.
-            </p>
-            <p>
-              Depuis, j’ai passé près d’un an en agence e-commerce à créer des modules PrestaShop
-              sur mesure pour des marques comme Celine Opticien et Hellomoon. Ce que j’aime :
-              comprendre un problème en entier, puis livrer quelque chose de propre qui tient en
-              production.
-            </p>
-            <p>
-              Aujourd’hui, je cherche une équipe où continuer à progresser et être utile dès le
-              premier jour.
-            </p>
-          </div>
-
-          <dl className="mt-6 mb-8 flex flex-wrap gap-x-8 gap-y-3">
-            {stats.map(({ value, label }) => (
-              <div key={label}>
-                <dt className="sr-only">{label}</dt>
-                <dd className="text-2xl font-black">{value}</dd>
-                <dd className="text-sm text-muted">{label}</dd>
-              </div>
+          <p className="mb-5 border-l-4 border-accent pl-4 text-xl font-bold sm:text-2xl">
+            {highlight}
+          </p>
+          <div className="mb-8 flex flex-col gap-4 text-base leading-relaxed sm:text-lg">
+            {intro.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
-          </dl>
+          </div>
 
           <div className="mt-auto flex flex-wrap gap-3">
             <a
@@ -136,8 +73,10 @@ function About() {
               <GraduationCap size={20} className="text-accent-light" />
               Formation
             </h3>
-            <p className="font-medium">Licence Pro Développeur Web et Application</p>
-            <p className="text-sm text-muted">UHA 4.0 — École du Numérique, Mulhouse · 2023</p>
+            <p className="font-medium">{education.degree}</p>
+            <p className="text-sm text-muted">
+              {education.school} · {education.period}
+            </p>
           </article>
 
           <article className="rounded-lg bg-elevated p-6">
@@ -166,7 +105,7 @@ function About() {
               {exp.role} <span className="text-accent-light">· {exp.company}</span>
             </p>
             <p className="mb-2 text-sm text-muted">{exp.period}</p>
-            <p className="max-w-2xl text-muted">{exp.description}</p>
+            {exp.description && <p className="max-w-2xl text-muted">{exp.description}</p>}
           </li>
         ))}
       </ol>
