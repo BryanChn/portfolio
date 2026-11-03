@@ -1,6 +1,13 @@
 import { Download, Mail } from 'lucide-react'
+import { FaLinkedin } from 'react-icons/fa'
+import { SiGithub } from 'react-icons/si'
 import photo from '../assets/photo-bryan-chaine.webp'
 import { profile } from '../data/profile'
+
+const socialLinks = [
+  { href: profile.github, label: 'GitHub (nouvel onglet)', Icon: SiGithub },
+  { href: profile.linkedin, label: 'LinkedIn (nouvel onglet)', Icon: FaLinkedin },
+]
 
 function Hero() {
   return (
@@ -46,6 +53,21 @@ function Hero() {
             />
             Télécharger mon CV
           </a>
+          <div className="flex gap-3">
+            {socialLinks.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                className="grid size-12 place-items-center rounded-full border border-white/30 transition hover:scale-105 hover:border-white"
+              >
+                <Icon size={22} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
