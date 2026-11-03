@@ -1,4 +1,5 @@
 import { Play } from 'lucide-react'
+import { profile } from '../data/profile'
 
 function PlayerBar() {
   return (
@@ -6,8 +7,8 @@ function PlayerBar() {
       <div className="flex min-w-0 items-center gap-3">
         <div className="size-10 shrink-0 rounded bg-linear-to-br from-accent to-accent-light md:size-12" />
         <div className="min-w-0">
-          <p className="truncate text-sm font-bold md:text-base">Bryan Chaine</p>
-          <p className="truncate text-xs text-muted md:text-sm">En recherche de poste</p>
+          <p className="truncate text-sm font-bold md:text-base">{profile.name}</p>
+          <p className="truncate text-xs text-muted md:text-sm">{profile.status}</p>
         </div>
       </div>
 

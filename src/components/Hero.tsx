@@ -1,5 +1,6 @@
-import { BadgeCheck } from 'lucide-react'
+import { Download, Mail } from 'lucide-react'
 import photo from '../assets/photo-bryan-chaine.webp'
+import { profile } from '../data/profile'
 
 function Hero() {
   return (
@@ -19,16 +20,33 @@ function Hero() {
       </div>
 
       <div className="min-w-0 [animation-delay:120ms] motion-safe:animate-fade-up">
-        <p className="flex items-center justify-center gap-2 text-sm font-medium md:justify-start">
-          <BadgeCheck size={22} className="fill-accent-light text-surface" />
-          Développeur vérifié
-        </p>
-        <h1 className="mt-2 text-5xl font-black tracking-tight sm:text-6xl lg:text-8xl">
-          Chaine Bryan
+        <h1 className="text-5xl font-black tracking-tight sm:text-6xl lg:text-8xl">
+          {profile.name}
         </h1>
-        <p className="mt-3 text-lg font-medium text-white/80 sm:text-xl">
-          Développeur web & mobile
-        </p>
+        <p className="mt-3 text-lg font-bold text-white sm:text-xl">{profile.title}</p>
+        <p className="mt-1 text-base text-white/80 sm:text-lg">{profile.subtitle}</p>
+
+        <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
+          <a
+            href="#contact"
+            className="flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-bold text-black transition-transform hover:scale-105 hover:bg-accent-light"
+          >
+            <Mail size={18} aria-hidden="true" />
+            Me contacter
+          </a>
+          <a
+            href={profile.cv}
+            download
+            className="group flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-bold transition hover:scale-105 hover:border-white"
+          >
+            <Download
+              size={18}
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-y-0.5"
+            />
+            Télécharger mon CV
+          </a>
+        </div>
       </div>
     </section>
   )

@@ -7,7 +7,6 @@ type Props = {
 export function Sidebar({ active }: Props) {
   return (
     <aside className="hidden w-64 shrink-0 flex-col gap-2 rounded-lg bg-surface p-4 md:flex">
-      <p className="px-3 pb-2 text-sm font-bold text-muted">Bibliothèque</p>
       {navItems.map(({ id, label, icon: Icon }) => (
         <a
           key={id}
