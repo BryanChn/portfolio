@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check, ImageIcon, Lock } from 'lucide-react'
+import { ArrowUpRight, Check, Lock } from 'lucide-react'
 import { SiGithub } from 'react-icons/si'
 import {
   agencyModules,
@@ -60,30 +60,33 @@ function FeaturedProjectCard() {
           </a>
         </div>
 
-        <ul className="grid grid-cols-3 gap-3">
-          {project.screenshots.map((shot) => (
-            <li
-              key={shot.src}
-              className="aspect-[9/19] overflow-hidden rounded-xl border border-white/10 bg-highlight"
-            >
-              {project.screenshotsReady ? (
+        <div className="flex flex-col gap-3">
+          <img
+            src={project.logo.src}
+            alt={project.logo.alt}
+            loading="lazy"
+            width={900}
+            height={570}
+            className="w-full rounded-xl"
+          />
+          <ul className="grid grid-cols-2 gap-3">
+            {project.screenshots.map((shot) => (
+              <li
+                key={shot.src}
+                className="overflow-hidden rounded-xl border border-white/10 bg-highlight"
+              >
                 <img
                   src={shot.src}
                   alt={shot.alt}
                   loading="lazy"
-                  width={360}
-                  height={760}
-                  className="size-full object-cover object-top"
+                  width={540}
+                  height={993}
+                  className="h-auto w-full"
                 />
-              ) : (
-                <div className="flex size-full flex-col items-center justify-center gap-2 p-2 text-center text-xs text-muted">
-                  <ImageIcon size={24} aria-hidden="true" />
-                  Capture à venir
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </article>
   )

@@ -12,8 +12,8 @@ export type FeaturedProject = {
   stack: string[]
   highlights: string[]
   github: string
+  logo: Screenshot
   screenshots: Screenshot[]
-  screenshotsReady: boolean
   cover: string
 }
 
@@ -44,12 +44,17 @@ export const featuredProject: FeaturedProject = {
     'Roadmap par objectifs mesurables',
   ],
   github: 'https://github.com/BryanChn/on-mange-quoi',
+  logo: { src: '/projects/on-mange-quoi/logo.webp', alt: 'Logo de l’app On mange quoi ?' },
   screenshots: [
-    { src: '/projects/on-mange-quoi/1.png', alt: 'On mange quoi ?, capture 1' },
-    { src: '/projects/on-mange-quoi/2.png', alt: 'On mange quoi ?, capture 2' },
-    { src: '/projects/on-mange-quoi/3.png', alt: 'On mange quoi ?, capture 3' },
+    {
+      src: '/projects/on-mange-quoi/1.webp',
+      alt: 'Écran de connexion de On mange quoi ? en thème clair : email et code à 6 chiffres',
+    },
+    {
+      src: '/projects/on-mange-quoi/2.webp',
+      alt: 'Écran de connexion de On mange quoi ? en thème sombre',
+    },
   ],
-  screenshotsReady: false,
   cover: 'from-amber-500 to-rose-600',
 }
 
