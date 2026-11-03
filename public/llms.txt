@@ -1,41 +1,43 @@
 # Bryan Chaine
 
-> Développeur web & mobile fullstack basé à Mulhouse (mobilité Colmar / Strasbourg), en recherche de poste. Près d'un an en agence e-commerce à concevoir, maintenir et optimiser des modules PrestaShop sur mesure pour des clients grands comptes. Formé front et back, à l'aise en Agile/Scrum, avec un workflow assisté par IA pour livrer vite un code relu et fiable.
+> Développeur PHP / PrestaShop, Symfony et React basé à Mulhouse, en recherche de poste sur site ou en hybride à Mulhouse, Colmar ou Strasbourg. Disponible immédiatement. 9 mois en agence e-commerce (S2i Evolution) à développer des modules PrestaShop sur mesure, en production, pour des clients grands comptes (Celine Opticien, Hellomoon). Ancien chef d'équipe à la centrale nucléaire de Fessenheim.
 
 - Site : https://bryan-chaine.vercel.app/
 - GitHub : https://github.com/BryanChn
 - LinkedIn : https://www.linkedin.com/in/bryan-chaine
 - CV (PDF) : https://bryan-chaine.vercel.app/Chaine_Bryan_CV.pdf
+- Email : bryanchaine@gmail.com
 - Contact : formulaire sur https://bryan-chaine.vercel.app/#contact
 
-## Stack
+## Compétences
 
-- Langages : PHP, JavaScript (ES6+), TypeScript, HTML5, CSS3, Sass, Java
-- Frameworks : React, Next.js, React Native, Symfony, NestJS, Ionic
-- E-commerce : PrestaShop 1.7 / 8.2 (modules sur mesure, Twig, Smarty), WordPress
-- Outils : Git, Vercel ; IA : Claude, ChatGPT
+- Au quotidien : PHP, PrestaShop 1.7 / 8, Symfony, MySQL, Git
+- Je maîtrise : JavaScript, TypeScript, React, React Native, WordPress, HTML / CSS
+- Méthodes : Scrum (certifié Scrum Master), développement assisté par IA (Claude)
 
-## Expérience
+## Parcours
 
-- Développeur Full Stack — S2I Evolution (oct. 2024 – août 2025) : développement et maintenance de modules sur mesure pour PrestaShop 1.7 et 8.2, front-end et optimisations back-end pour des clients comme Celine Opticien et Hellomoon.
-- Développeur stagiaire — LUC Ratteli (6 mois) : bibliothèque open-source automatisant le cycle de vie d'articles, de l'ajout à la revente.
-- Chef d'équipe — CNPE Fessenheim : management d'équipe et respect des protocoles de sécurité en environnement critique.
+- Développeur — projet personnel « On mange quoi ? » (oct. 2026 – aujourd'hui)
+- Développeur Full Stack — S2i Evolution, Mulhouse (oct. 2024 – juil. 2025) : modules PrestaShop 1.7 et 8.2 sur mesure, en production, pour des clients grands comptes (Celine Opticien, Hellomoon).
+- Développeur stagiaire — L. Ratteli, développeur indépendant (janv. – juin 2023) : bibliothèque open-source de gestion du cycle de vie d'articles, de la mise en ligne à la revente (Java, AngularJS).
+- Chef d'équipe — CNPE de Fessenheim (2012 – 2015) : management d'équipe, gestion des priorités, protocoles de sécurité en environnement critique.
 
 ## Formation
 
-- Licence Pro Développeur Web et Application — UHA 4.0, École du Numérique, Mulhouse (2023)
+- Licence Pro Développeur Web et Application — UHA 4.0, Mulhouse (2021 – 2023)
 
-## Modules PrestaShop (S2I Evolution)
+## Projet phare : On mange quoi ?
 
-- Retours clients : gestion complète des retours de commandes pour clients connectés et invités, formulaire spécifique aux lunettes, suivi en back-office et email automatique. PHP, Smarty, JavaScript.
-- Campagnes & visuels : programmation à l'avance des visuels du site (soldes, opérations spéciales), appliqués automatiquement à la date prévue.
-- Factures ZPL : génération d'étiquettes ZPL (imprimantes thermiques Zebra) à partir des factures, prêtes à scanner.
-- Cache Varnish : vidage ciblé des caches PrestaShop et Varnish après une mise à jour de produit, prix ou image, planifiable par cron.
+App mobile de décision collective des repas : chacun propose, tout le monde vote, l'app tranche. MVP en cours. React Native, TypeScript, Expo, Supabase (Postgres, Auth, Realtime). Migrations SQL versionnées, scénarios de test SQL, typage strict, ESLint, roadmap par objectifs mesurables. Code : https://github.com/BryanChn/on-mange-quoi
 
-## Projets
+## Modules PrestaShop (S2i Evolution, code propriétaire non publié)
 
-- SDIS 67 : application React utilisable hors-ligne (PWA, Service Workers) pour les zones blanches.
-- EBN : application React Native de collecte de bio-déchets avec dashboard statistique en temps réel.
-- ENVIE : plateforme de référencement de pièces détachées par numéro de série et marque.
-- MDC : application Ionic d'organisation d'activités de groupe.
-- Ce portfolio : React 19, TypeScript, Vite, Tailwind CSS v4, pré-rendu au build, fonction serverless Vercel + Resend pour le contact. Code : https://github.com/BryanChn/portfolio
+- Retours client : nouveau parcours de retour pour clients connectés et invités (retrouvés par numéro de commande), formulaire pré-rempli, envoi de motif, marque et photos, traitement en back-office via un hook, e-mails automatiques. PHP, PrestaShop 8, Smarty / Twig, MySQL.
+- Campagnes et visuels : bannières (image, texte) positionnées sur les zones du site via les hooks, activées et désactivées automatiquement par cron selon des dates et horaires. PHP, PrestaShop, Smarty / Twig, cron, MySQL.
+- Purge du cache Varnish : vidage automatique après modification du catalogue, panneau d'administration manuel, planification par cron. PHP, PrestaShop, Varnish, cron.
+- Factures ZPL : génération des factures au format ZPL pour imprimante thermique à partir des commandes. PHP, PrestaShop, ZPL.
+
+## Projets de formation (UHA 4.0, 2022)
+
+- SDIS 67 : PWA React hors-ligne avec Service Workers, pour les zones sans réseau.
+- EBN : app React Native de collecte de bio-déchets avec tableau de bord en temps réel.
