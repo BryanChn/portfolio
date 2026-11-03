@@ -1,4 +1,5 @@
-import { ArrowUpRight, Check, Lock } from 'lucide-react'
+import { ArrowUpRight, Check, Lock, Play } from 'lucide-react'
+import { useState } from 'react'
 import { SiGithub } from 'react-icons/si'
 import {
   agencyModules,
@@ -6,7 +7,10 @@ import {
   featuredProject,
   trainingProjects,
   trainingSection,
+  type TrainingProject,
 } from '../data/projects'
+import AlbumCover from './AlbumCover'
+import TrainingProjectModal from './TrainingProjectModal'
 
 function TechList({ items }: { items: string[] }) {
   return (
@@ -134,20 +138,51 @@ function AgencyModules() {
 }
 
 function TrainingProjects() {
+  const [selected, setSelected] = useState<TrainingProject | null>(null)
+
   return (
     <div>
-      <h3 className="mb-3 text-base font-bold text-muted">{trainingSection.title}</h3>
-      <ul className="grid gap-3 sm:grid-cols-2">
+      <div className="mb-4 flex items-center gap-4">
+        <img
+          src={trainingSection.logo.src}
+          alt={trainingSection.logo.alt}
+          width={200}
+          height={200}
+          loading="lazy"
+          className="size-16 shrink-0 rounded-lg bg-white shadow-lg"
+        />
+        <div className="min-w-0">
+          <p className="text-sm text-muted">{trainingSection.label}</p>
+          <h3 className="text-xl font-bold">{trainingSection.school}</h3>
+          <p className="text-sm text-muted">{trainingSection.tagline}</p>
+        </div>
+      </div>
+
+      <ul className="-mx-3 flex flex-wrap">
         {trainingProjects.map((project) => (
-          <li key={project.title} className="rounded-lg border border-white/10 p-4">
-            <h4 className="font-bold">
-              {project.title}{' '}
-              <span className="text-sm font-normal text-muted">· {project.subtitle}</span>
-            </h4>
-            <p className="mt-1 text-sm text-muted">{project.description}</p>
+          <li key={project.title}>
+            <button
+              type="button"
+              onClick={() => setSelected(project)}
+              aria-haspopup="dialog"
+              className="group w-44 rounded-lg p-3 text-left transition-colors hover:bg-highlight focus-visible:bg-highlight sm:w-52"
+            >
+              <div className="relative mb-3">
+                <AlbumCover project={project} />
+                <span className="absolute right-2 bottom-2 grid size-11 translate-y-2 place-items-center rounded-full bg-accent text-black opacity-0 shadow-xl transition-all group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                  <Play size={20} fill="currentColor" aria-hidden="true" />
+                </span>
+              </div>
+              <span className="block truncate font-bold">{project.title}</span>
+              <span className="block truncate text-sm text-muted">
+                {trainingSection.year} · {project.subtitle}
+              </span>
+            </button>
           </li>
         ))}
       </ul>
+
+      <TrainingProjectModal project={selected} onClose={() => setSelected(null)} />
     </div>
   )
 }
