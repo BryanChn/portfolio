@@ -1,54 +1,166 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useState } from 'react'
-import { projects, type Project } from '../data/projects'
-import ProjectCard from './ProjectCard'
-import ProjectModal from './ProjectModal'
+import { ArrowUpRight, Check, Lock } from 'lucide-react'
+import { SiGithub } from 'react-icons/si'
+import {
+  agencyModules,
+  agencySection,
+  featuredProject,
+  trainingProjects,
+  trainingSection,
+} from '../data/projects'
 
-function Projects() {
-  const trackRef = useRef<HTMLDivElement>(null)
-  const scroll = (direction: 1 | -1) => {
-    trackRef.current?.scrollBy({
-      left: direction * trackRef.current.clientWidth * 0.8,
-      behavior: 'smooth',
-    })
-  }
+function TechList({ items }: { items: string[] }) {
+  return (
+    <ul className="flex flex-wrap gap-2">
+      {items.map((item) => (
+        <li key={item} className="rounded-full bg-highlight px-3 py-1 text-sm">
+          {item}
+        </li>
+      ))}
+    </ul>
+  )
+}
 
-  const [selected, setSelected] = useState<Project | null>(null)
+function FeaturedProjectCard() {
+  const project = featuredProject
 
   return (
-    <section id="projects" className="px-4 py-8 sm:px-6 md:py-10">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Projets</h2>
-        <div className="hidden gap-2 md:flex">
-          <button
-            type="button"
-            onClick={() => scroll(-1)}
-            aria-label="Précédent"
-            className="rounded-full bg-highlight p-1.5 hover:bg-white/20"
+    <article className="overflow-hidden rounded-lg bg-elevated">
+      <header className={`bg-linear-to-br p-6 ${project.cover}`}>
+        <p className="w-fit rounded-full bg-black/30 px-3 py-1 text-sm font-bold">
+          {project.status}
+        </p>
+        <h3 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">{project.title}</h3>
+        <p className="mt-2 max-w-2xl text-lg font-medium text-white/90">{project.pitch}</p>
+      </header>
+
+      <div className="grid gap-6 p-6 lg:grid-cols-[3fr_2fr]">
+        <div className="flex flex-col gap-5">
+          <TechList items={project.stack} />
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {project.highlights.map((highlight) => (
+              <li key={highlight} className="flex items-center gap-2 text-muted">
+                <Check size={18} aria-hidden="true" className="shrink-0 text-accent-light" />
+                {highlight}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex w-fit items-center gap-2 rounded-full border border-white bg-white px-5 py-2.5 font-bold text-black transition-transform hover:scale-105"
           >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            type="button"
-            onClick={() => scroll(1)}
-            aria-label="Suivant"
-            className="rounded-full bg-highlight p-1.5 hover:bg-white/20"
-          >
-            <ChevronRight size={20} />
-          </button>
+            <SiGithub size={20} aria-hidden="true" />
+            Voir le code
+            <ArrowUpRight
+              size={18}
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <img
+            src={project.logo.src}
+            alt={project.logo.alt}
+            loading="lazy"
+            width={900}
+            height={570}
+            className="w-full rounded-xl"
+          />
+          <ul className="grid grid-cols-2 gap-3">
+            {project.screenshots.map((shot) => (
+              <li
+                key={shot.src}
+                className="overflow-hidden rounded-xl border border-white/10 bg-highlight"
+              >
+                <img
+                  src={shot.src}
+                  alt={shot.alt}
+                  loading="lazy"
+                  width={540}
+                  height={993}
+                  className="h-auto w-full"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+    </article>
+  )
+}
 
-      <div
-        ref={trackRef}
-        className="-mx-3 no-scrollbar flex snap-x snap-mandatory gap-2 overflow-x-auto"
-      >
-        {projects.map((project) => (
-          <ProjectCard key={project.title} project={project} onClick={() => setSelected(project)} />
+function AgencyModules() {
+  return (
+    <div>
+      <h3 className="mb-4 text-xl font-bold">{agencySection.title}</h3>
+      <ul className="grid gap-4 lg:grid-cols-2">
+        {agencyModules.map((module) => (
+          <li key={module.title} className="flex flex-col gap-4 rounded-lg bg-elevated p-6">
+            <h4 className="text-lg font-bold">{module.title}</h4>
+            <dl className="flex flex-col gap-4">
+              <div>
+                <dt className="mb-1 text-sm font-bold text-accent-light">Besoin du client</dt>
+                <dd className="text-muted">{module.need}</dd>
+              </div>
+              <div>
+                <dt className="mb-1 text-sm font-bold text-accent-light">Ce que j’ai réalisé</dt>
+                <dd>
+                  <ul className="flex list-disc flex-col gap-1 pl-5 text-muted marker:text-accent">
+                    {module.done.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+              <div>
+                <dt className="mb-2 text-sm font-bold text-accent-light">Stack</dt>
+                <dd>
+                  <TechList items={module.stack} />
+                </dd>
+              </div>
+            </dl>
+          </li>
         ))}
-      </div>
+      </ul>
+      <p className="mt-3 flex items-center gap-2 text-sm text-muted">
+        <Lock size={14} aria-hidden="true" />
+        {agencySection.notice}
+      </p>
+    </div>
+  )
+}
 
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+function TrainingProjects() {
+  return (
+    <div>
+      <h3 className="mb-3 text-base font-bold text-muted">{trainingSection.title}</h3>
+      <ul className="grid gap-3 sm:grid-cols-2">
+        {trainingProjects.map((project) => (
+          <li key={project.title} className="rounded-lg border border-white/10 p-4">
+            <h4 className="font-bold">
+              {project.title}{' '}
+              <span className="text-sm font-normal text-muted">· {project.subtitle}</span>
+            </h4>
+            <p className="mt-1 text-sm text-muted">{project.description}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function Projects() {
+  return (
+    <section id="projects" className="px-4 py-8 sm:px-6 md:py-10">
+      <h2 className="mb-6 text-2xl font-bold">Projets</h2>
+      <div className="flex flex-col gap-10">
+        <FeaturedProjectCard />
+        <AgencyModules />
+        <TrainingProjects />
+      </div>
     </section>
   )
 }

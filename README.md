@@ -1,14 +1,15 @@
 # Portfolio — Bryan Chaine
 
-Portfolio one-page de développeur web & mobile, au design inspiré de l'interface de Spotify.
+Portfolio one-page de développeur PHP / PrestaShop, Symfony et React, au design inspiré de l'interface de Spotify.
 
 **En ligne : [bryan-chaine.vercel.app](https://bryan-chaine.vercel.app)**
 
 ## Fonctionnalités
 
 - **Layout façon application** : sidebar de navigation, zone principale défilante, barre de statut fixe (barre d'onglets sur mobile)
-- **Compétences** filtrables par catégorie (langages, frameworks, e-commerce, IA, outils)
-- **Projets et modules PrestaShop** présentés comme des albums, dans un carrousel, avec une fiche détaillée au clic
+- **Compétences** regroupées en trois niveaux : au quotidien, maîtrisées, méthodes
+- **Projets** : projet phare mis en avant (avec emplacement pour captures), fiches des modules PrestaShop réalisés en agence (besoin / réalisation / stack), projets de formation
+- **Contenu modifiable sans toucher aux composants** : textes, compétences, parcours et projets dans `src/data/*.ts`
 - **Formulaire de contact** avec validation, états de chargement / succès / erreur, et envoi réel des emails, protégé contre le spam (captcha Cloudflare Turnstile, rate limit, champ piège)
 - **Sécurité et cache** : Content-Security-Policy et en-têtes de sécurité, cache longue durée des assets (`vercel.json`)
 - **SEO** : HTML pré-rendu au build, balises Open Graph avec vignette, données structurées JSON-LD, `robots.txt`, `sitemap.xml` et `llms.txt`

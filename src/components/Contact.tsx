@@ -1,6 +1,17 @@
 import { Turnstile, type TurnstileInstance } from '@marsidev/react-turnstile'
-import { CheckCircle2, Loader2, Send, TriangleAlert } from 'lucide-react'
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Download,
+  Loader2,
+  Mail,
+  Send,
+  TriangleAlert,
+} from 'lucide-react'
 import { useRef, useState, type ChangeEvent, type FormEvent } from 'react'
+import { FaLinkedin } from 'react-icons/fa'
+import { SiGithub } from 'react-icons/si'
+import { profile } from '../data/profile'
 import {
   EMAIL_MAX_LENGTH,
   HONEYPOT_FIELD,
@@ -82,6 +93,63 @@ function Contact() {
     <section id="contact" className="px-4 py-8 sm:px-6 md:py-10">
       <h2 className="mb-2 text-2xl font-bold">Contact</h2>
       <p className="mb-6 text-muted">Un poste, un projet, une question ? Écrivez-moi.</p>
+
+      <div className="mb-8 flex max-w-xl flex-col gap-4">
+        <p className="flex w-fit items-center gap-2 rounded-full bg-highlight px-4 py-1.5 text-sm font-bold">
+          <span className="size-2 rounded-full bg-green-400" aria-hidden="true" />
+          {profile.status}
+        </p>
+        <a
+          href={`mailto:${profile.email}`}
+          className="flex w-fit items-center gap-2 text-lg font-bold break-all hover:text-accent-light"
+        >
+          <Mail size={20} aria-hidden="true" className="shrink-0" />
+          {profile.email}
+        </a>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-1 items-center justify-center gap-2 rounded-full border border-white bg-white px-4 py-3 font-bold whitespace-nowrap text-black transition-transform hover:scale-105 sm:gap-3 sm:px-6"
+          >
+            <SiGithub size={22} aria-hidden="true" />
+            GitHub
+            <ArrowUpRight
+              size={20}
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-1 items-center justify-center gap-2 rounded-full border border-white/30 px-4 py-3 font-bold whitespace-nowrap transition hover:scale-105 hover:border-white sm:gap-3 sm:px-6"
+          >
+            <FaLinkedin size={22} aria-hidden="true" />
+            LinkedIn
+            <ArrowUpRight
+              size={20}
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+          <a
+            href={profile.cv}
+            download
+            aria-label="Télécharger mon CV (PDF)"
+            className="group flex flex-1 items-center justify-center gap-2 rounded-full border border-white/30 px-4 py-3 font-bold whitespace-nowrap transition hover:scale-105 hover:border-white sm:gap-3 sm:px-6"
+          >
+            <Download
+              size={20}
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-y-0.5"
+            />
+            Mon CV
+          </a>
+        </div>
+      </div>
 
       {status === 'success' ? (
         <div className="flex max-w-xl items-center gap-3 rounded-lg bg-elevated p-6">

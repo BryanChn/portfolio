@@ -35,7 +35,7 @@ function CopyEmail() {
           type="button"
           onClick={handleCopy}
           title="Copier l'adresse email"
-          className="group flex items-center gap-2 transition-colors hover:text-white"
+          className="group -my-1.5 flex items-center gap-2 py-1.5 transition-colors hover:text-white"
         >
           <Mail size={16} aria-hidden="true" />
           {email}
