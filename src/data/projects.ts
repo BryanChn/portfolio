@@ -28,6 +28,8 @@ export type TrainingProject = {
   title: string
   subtitle: string
   description: string
+  tech: string[]
+  cover: string
 }
 
 export const featuredProject: FeaturedProject = {
@@ -106,7 +108,12 @@ export const agencyModules: AgencyModule[] = [
 ]
 
 export const trainingSection = {
-  title: 'Projets de formation · UHA 4.0 (2022)',
+  label: 'Projets de formation',
+  school: 'UHA 4.0',
+  tagline: 'L’école du numérique · Université de Haute-Alsace',
+  year: '2022',
+  context: 'Formation par projets, en équipe et en méthode Scrum.',
+  logo: { src: '/projects/uha/logo.jpg', alt: 'Logo UHA 4.0, l’école du numérique' },
 }
 
 export const trainingProjects: TrainingProject[] = [
@@ -114,11 +121,16 @@ export const trainingProjects: TrainingProject[] = [
     title: 'SDIS 67',
     subtitle: 'React · PWA',
     description:
-      'PWA React hors-ligne avec Service Workers, pour les interventions dans les zones sans réseau.',
+      'Application React avec données hors-ligne (Service Workers) pour assurer la continuité de service des pompiers en zones blanches.',
+    tech: ['React', 'Service Workers', 'PWA'],
+    cover: 'from-red-600 to-orange-400',
   },
   {
     title: 'EBN',
     subtitle: 'React Native',
-    description: 'App React Native de collecte de bio-déchets avec tableau de bord en temps réel.',
+    description:
+      'Application React Native de collecte de bio-déchets avec tableau de bord de suivi en temps réel.',
+    tech: ['React Native', 'Tableau de bord'],
+    cover: 'from-emerald-600 to-lime-400',
   },
 ]
