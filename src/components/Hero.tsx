@@ -20,8 +20,8 @@ function Hero() {
           src={photo}
           alt="Portrait de Bryan Chaine"
           fetchPriority="high"
-          width={324}
-          height={324}
+          width={416}
+          height={416}
           className="size-full object-cover object-top"
         />
       </div>
